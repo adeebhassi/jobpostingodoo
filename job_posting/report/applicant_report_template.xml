@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="applicant_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1 style="text-align:center;">Applicant Report</h1>
+                        <strong>Name:</strong><t t-esc = "doc.name"/><br/>
+                        <strong>Email:</strong><t t-esc = "doc.email"/><br/>
+                        <strong>Phone:</strong><t t-esc = "doc.phone"/><br/>
+                        <strong>First Interview Remarks:</strong><t t-esc = "doc.first_interview_remarks"/><br/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_applicant_report_tempalte" model="ir.actions.report">
+        <field name="name">Job Applicants</field>
+        <field name="model">job.applicant</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">job_posting.applicant_report_template</field>
+        <field name="report_file">job_posting.applicant_report_template</field>
+        <!-- <field name="print_report_name">'Applicant-Report'</field> -->
+        <field name="binding_model_id" ref="job_posting.model_job_applicant"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    
+</odoo>
